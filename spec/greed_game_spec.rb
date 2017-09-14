@@ -1,22 +1,50 @@
 require "greed_game"
 
 describe 'Game' do
-  describe "is ready" do
+  before(:each) do
+    @game = Game.new()
+  end
+
+  describe "is ready when" do
     it 'has two players' do
-      game = Game.new()
       player_one = {}
       player_two = {}
-      game.add_players(player_one, player_two)
-      expect(game.num_players).to eq(2)
+      @game.add_players(player_one, player_two)
+      expect(@game.num_players).to eq(2)
+    end
+
+    it 'has tree players' do
+      player_one = {}
+      player_two = {}
+      player_three = {}
+      @game.add_players(player_one, player_two, player_three)
+      expect(@game.num_players).to eq(3)
     end
   end
-  describe 'is not ready' do
+
+  describe 'is not ready when' do
     it 'has no players' do
-      game = Game.new()
-      expect(game.num_players).to eq(0)
+      expect(@game.num_players).to eq(0)
     end
-    
+
+    it 'has one player' do
+      player_one = {}
+      @game.add_players(player_one)
+      expect(@game.num_players).to eq(1)
+    end
   end
+end
+
+describe 'Turn' do
+  it 'can start if @game is ready' do
+    @game = Game.new()
+    player_one = {}
+    player_two = {}
+    @game.add_players(player_one, player_two)
+    expect(@game.ready?).to be_truthy
+  end
+
+
 end
 
 # class AboutDiceCollection < Neo::Koan
@@ -64,6 +92,6 @@ end
 #   end
 
 #   def test_scored_dices_are_removed_from_set
-    
+
 #   end
 # end
