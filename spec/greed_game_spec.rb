@@ -10,7 +10,7 @@ describe 'Game' do
       player_one = {}
       player_two = {}
       @game.add_players(player_one, player_two)
-      expect(@game.num_players).to eq(2)
+      expect(@game.ready?).to be_truthy
     end
 
     it 'has tree players' do
@@ -18,19 +18,19 @@ describe 'Game' do
       player_two = {}
       player_three = {}
       @game.add_players(player_one, player_two, player_three)
-      expect(@game.num_players).to eq(3)
+      expect(@game.ready?).to be_truthy
     end
   end
 
   describe 'is not ready when' do
     it 'has no players' do
-      expect(@game.num_players).to eq(0)
+      expect(@game.ready?).to be_falsy
     end
 
     it 'has one player' do
       player_one = {}
       @game.add_players(player_one)
-      expect(@game.num_players).to eq(1)
+      expect(@game.ready?).to be_falsy
     end
   end
 end
