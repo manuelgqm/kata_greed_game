@@ -28,8 +28,8 @@ class Player
     @total_score = 0
   end
 
-  def add_score(score)
-    @total_score = score
+  def add_score(*scores)
+    @total_score = scores.inject { |sum, score| sum + score }
   end
 
 end
