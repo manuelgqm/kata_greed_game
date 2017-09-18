@@ -21,33 +21,17 @@ class Game
 end
 
 class Player
-  attr_accessor :score
+  attr_accessor :total_score
   attr_accessor :turns
 
   def initialize
-    @score = 0
-    @turns = []
+    @total_score = 0
   end
 
-  def add_turn(turn)
-    @turns << turn
+  def add_score(score)
+    @total_score = score
   end
 
-  def num_turns
-    @turns.length
-  end
-end
-
-class Turn
-  attr_accessor :score
-
-  def initialize
-    @score = 0
-  end
-
-  def add_score(val)
-    @score += val
-  end
 end
 
 class DiceCollection

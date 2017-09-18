@@ -35,13 +35,23 @@ describe 'Game' do
   end
 end
 
-describe 'Turn' do
-  it 'can start if @game is ready' do
-    @game = Game.new()
-    player_one = {}
-    player_two = {}
-    @game.add_players(player_one, player_two)
-    expect(@game.ready?).to be_truthy
+describe 'A player' do
+  before(:each) do
+    @player = Player.new()
+  end
+
+  it 'starts with zero score' do
+    expect(@player.total_score).to eq(0)
+  end
+
+  it 'adds score by 10' do
+    @player.add_score(10)
+    expect(@player.total_score).to eq(10)
+  end
+
+  it 'adds score by 10 and 20' do
+    @player.add_score(10, 20)
+    expect(@player.total_score).to eq(30)
   end
 
 
