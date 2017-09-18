@@ -53,55 +53,72 @@ describe 'A player' do
     @player.add_score(10, 20)
     expect(@player.total_score).to eq(30)
   end
-
-
 end
 
-# class AboutDiceCollection < Neo::Koan
-#   @@DiceCollection = DiceCollection.new
+describe 'A dice set' do
+  before(:each) do
+    @diceset = DiceCollection.new
+  end
 
-#   def test_score_of_an_empty_list_is_zero
-#     @@diceCollection = DiceCollection.new
-#     assert_equal 0, @@diceCollection.score([])
-#   end
+  describe 'that is rolled' do
+    it 'rolls 5 dices by default' do
+      @diceset.roll
+      expect(@diceset.values.length).to eq(5)
+    end
 
-#   def test_score_of_a_single_roll_of_5_is_50
-#     assert_equal 50, @@diceCollection.score([5])
-#   end
+    it 'rolls passed number of dices' do
+      @diceset.roll(6)
+      expect(@diceset.values.length).to eq(6)
+    end
+  end
 
-#   def test_score_of_a_single_roll_of_1_is_100
-#     assert_equal 100, @@diceCollection.score([1])
-#   end
+  describe 'that score of' do
+    it 'no values is zero' do
+      expect(@diceset.score([])).to eq(0)
+    end
 
-#   def test_score_of_multiple_1s_and_5s_is_the_sum_of_individual_scores
-#     assert_equal 300, @@diceCollection.score([1,5,5,1])
-#   end
+    it 'single roll of 5 is 50' do
+      expect(@diceset.score([5])).to eq(50)
+    end
 
-#   def test_score_of_single_2s_3s_4s_and_6s_are_zero
-#     assert_equal 0, @@diceCollection.score([2,3,4,6])
-#   end
+    it 'single roll of 1 is 100' do
+      expect(@diceset.score([1])).to eq(100)
+    end
 
-#   def test_score_of_a_triple_1_is_1000
-#     assert_equal 1000, @@diceCollection.score([1,1,1])
-#   end
+    it 'mutiple 1s and 5s is the sum of individual scores' do
+      expect(@diceset.score([1,5,5,1])).to eq(300)
+    end
 
-#   def test_score_of_other_triples_is_100x
-#     assert_equal 200, @@diceCollection.score([2,2,2])
-#     assert_equal 300, @@diceCollection.score([3,3,3])
-#     assert_equal 400, @@diceCollection.score([4,4,4])
-#     assert_equal 500, @@diceCollection.score([5,5,5])
-#     assert_equal 600, @@diceCollection.score([6,6,6])
-#   end
+    it 'single 2s, 3s, 4s, and 6s are zero' do
+      expect(@diceset.score([2,3,4,6])).to eq(0)
+    end
+    
+    it 'a triple 1 is 1000' do
+      expect(@diceset.score([1,1,1])).to eq(1000)
+    end
 
-#   def test_score_of_mixed_is_sum
-#     assert_equal 250, @@diceCollection.score([2,5,2,2,3])
-#     assert_equal 550, @@diceCollection.score([5,5,5,5])
-#     assert_equal 1100, @@diceCollection.score([1,1,1,1])
-#     assert_equal 1200, @@diceCollection.score([1,1,1,1,1])
-#     assert_equal 1150, @@diceCollection.score([1,1,1,5,1])
-#   end
+    it 'other triples is 100x' do
+      expect(@diceset.score([2,2,2])).to eq(200)
+      expect(@diceset.score([3,3,3])).to eq(300)
+      expect(@diceset.score([4,4,4])).to eq(400)
+      expect(@diceset.score([5,5,5])).to eq(500)
+      expect(@diceset.score([6,6,6])).to eq(600)
+    end
 
-#   def test_scored_dices_are_removed_from_set
+    it 'mixed is sum' do
+      expect(@diceset.score([2,5,2,2,3])).to eq(250)
+      expect(@diceset.score([5,5,5,5])).to eq(550)
+      expect(@diceset.score([1,1,1,1])).to eq(1100)
+      expect(@diceset.score([1,1,1,1,1])).to eq(1200)
+      expect(@diceset.score([1,1,1,5,1])).to eq(1150)
+    end
 
-#   end
-# end
+    it 'not zero is removed from diceset' do
+    
+    end
+    
+  end
+
+  
+
+end
