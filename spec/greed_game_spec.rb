@@ -72,7 +72,7 @@ describe 'A dice set' do
     end
   end
 
-  describe 'that score of' do
+  describe 'scores on' do
     it 'no values is zero' do
       expect(@diceset.score([])).to eq(0)
     end
@@ -92,7 +92,7 @@ describe 'A dice set' do
     it 'single 2s, 3s, 4s, and 6s are zero' do
       expect(@diceset.score([2,3,4,6])).to eq(0)
     end
-    
+
     it 'a triple 1 is 1000' do
       expect(@diceset.score([1,1,1])).to eq(1000)
     end
@@ -113,12 +113,9 @@ describe 'A dice set' do
       expect(@diceset.score([1,1,1,5,1])).to eq(1150)
     end
 
-    it 'not zero is removed from diceset' do
-    
-    end
-    
   end
 
-  
+  it 'returns number of not scored dices' do
 
+  end
 end
